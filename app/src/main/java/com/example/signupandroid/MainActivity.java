@@ -3,6 +3,7 @@ package com.example.signupandroid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     EditText Username, FullName, Email, Gender;
     DatePicker picker;
     String Date;
-    Button uploadTask;
+    Button uploadTask, viewDataBtn;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Email = (EditText) findViewById(R.id.Email);
         Gender = (EditText) findViewById(R.id.Gender);
         uploadTask = (Button) findViewById(R.id.uploadBtn);
+        viewDataBtn = (Button) findViewById(R.id.ViewBtn);
 
 
         UserDatabase userDatabase = UserDatabase.getDB(this);
@@ -58,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
                 Gender.setText("");
                 Email.setText("");
                 picker.clearFocus();
+            }
+        });
+
+        viewDataBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, UsersDataActivity.class));
             }
         });
 
